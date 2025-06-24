@@ -23,14 +23,17 @@ body {
 }
 
 header {
-  background-color: var(--van-dyke);
+  background-color: var(--slate-gray);
   color: var(--platinum);
   padding: 2rem;
   text-align: center;
+  font-weight: bold;
   font-size: 1.5rem;
-  font-weight: 800;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
+  border-bottom-left-radius: 50% 20%;
+  border-bottom-right-radius: 50% 20%;
 }
+
 
 main {
   flex: 1;
@@ -38,13 +41,17 @@ main {
 }
 
 nav {
-  width: 250px;
+  width: 180px; /* vorher: 250px */
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+  overflow: hidden;
   background-color: var(--midnight-green);
   color: var(--platinum);
   padding: 1rem 0;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem; /* sorgt für gleichmäßigen Abstand */
+  gap: 0.5rem;
+  box-shadow: 4px 0 8px rgba(0, 0, 0, 0.2);
 }
 
 nav button {
@@ -89,9 +96,13 @@ nav button.active {
 }
 
 footer {
-  background-color: var(--van-dyke);
+  background-color: var(--slate-gray); /* dunkler, aber dezent */
   color: var(--platinum);
   padding: 1rem;
   text-align: center;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
+  border-top-left-radius: 50% 20%;
+  border-top-right-radius: 50% 20%;
+  opacity: 0.9;
 }
+
