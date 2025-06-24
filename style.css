@@ -1,0 +1,97 @@
+:root {
+  --midnight-green: #023c40;
+  --slate-gray: #718e91;
+  --platinum: #e0e0e2;
+  --van-dyke: #4e3d42;
+  --eggplant: #52414c;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Orbitron', sans-serif;
+}
+
+body {
+  font-family: 'Orbitron', sans-serif;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: var(--platinum);
+  color: var(--eggplant);
+}
+
+header {
+  background-color: var(--van-dyke);
+  color: var(--platinum);
+  padding: 2rem;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+main {
+  flex: 1;
+  display: flex;
+}
+
+nav {
+  width: 250px;
+  background-color: var(--midnight-green);
+  color: var(--platinum);
+  padding: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem; /* sorgt für gleichmäßigen Abstand */
+}
+
+nav button {
+  background: transparent;
+  color: var(--platinum);
+  border: 3px solid var(--van-dyke);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  width: 90%;
+  margin: 0 auto;
+  text-align: left;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+nav button:hover {
+  background-color: var(--slate-gray);
+  box-shadow: 0 0 8px 2px var(--eggplant);
+}
+
+nav button.active {
+  background-color: var(--eggplant);
+  box-shadow: 0 0 12px 4px var(--eggplant);
+}
+
+.content {
+  flex: 1;
+  padding: 2rem;
+}
+
+.diagram-box {
+  border: 2px solid var(--van-dyke);
+  border-radius: 12px;
+  background-color: white;
+  height: 100%;
+  padding: 1rem;
+  color: var(--van-dyke);
+  font-weight: bold;
+}
+
+footer {
+  background-color: var(--van-dyke);
+  color: var(--platinum);
+  padding: 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+}
