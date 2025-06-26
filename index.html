@@ -1,33 +1,81 @@
 <!DOCTYPE html>
-
 <html lang="de">
+
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Fermi-Paradoxon Projekt</title>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&amp;display=swap" rel="stylesheet"/>
-<link href="style.css" rel="stylesheet"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fermi-Paradoxon Projekt</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-<header>
+
+  <header>
     Fermi-Paradoxon Projekt
   </header>
-<main>
-<nav>
-<button>Was ist das Fermi Paradox?</button>
-<button>Anforderungen für Leben</button>
-<button>Entfernungen / Kommunikation</button>
-<button>Zeiträume – Erklärung und Darstellung</button>
-<button>Typen von Zivilisationen – Kardashev-Skala</button>
-<button>Drake-Gleichung</button>
-<button>Diagramm</button>
-</nav>
-<div class="content-wrapper">
-<div class="content"><div>Inhalte werden geladen...</div></div>
-</div></main>
-<footer>
+
+  <main>
+    <nav>
+      <button>Was ist das Fermi Paradox?</button>
+      <button>Anforderungen für Leben</button>
+      <button>Entfernungen / Kommunikation</button>
+      <button>Zeiträume – Erklärung und Darstellung</button>
+      <button>Typen von Zivilisationen – Kardashev-Skala</button>
+      <button>Drake-Gleichung</button>
+      <button>Diagramm</button>
+    </nav>
+    <div class="content-wrapper">
+      <div class="content">
+        <!-- Drake-Gleichung Content -->
+        <div id="drake-content" style="display: none">
+          <h2>Die Drake-Gleichung</h2>
+          <p>
+            Die Drake-Gleichung schätzt die Anzahl technologisch fortgeschrittener Zivilisationen in unserer Galaxie,
+            die
+            mit uns kommunizieren könnten.
+          </p>
+          <p>
+            <strong>Formel:</strong><br />
+            <code>N = R* × f_p × n_e × f_l × f_i × f_c × L</code>
+          </p>
+          <ul>
+            <li><strong>R*</strong>: Sternentstehungsrate pro Jahr</li>
+            <li><strong>f_p</strong>: Anteil der Sterne mit Planetensystemen</li>
+            <li><strong>n_e</strong>: bewohnbare Planeten pro System</li>
+            <li><strong>f_l</strong>: Anteil mit Leben</li>
+            <li><strong>f_i</strong>: Anteil mit intelligentem Leben</li>
+            <li><strong>f_c</strong>: Anteil mit kommunizierenden Zivilisationen</li>
+            <li><strong>L</strong>: Dauer der nachweisbaren Phase</li>
+          </ul>
+          <p>
+            Beispielrechnung mit realistischen Werten ergibt <strong>N ≈ 1</strong> – etwa eine aktive Zivilisation in
+            unserer Galaxie.
+          </p>
+        </div>
+
+        <!-- Drake-Rechner + Visualisierung -->
+        <div id="diagramm-content" style="display: none">
+          <h2>Interaktiver Drake-Rechner</h2>
+          <div id="drake-form"></div>
+          <button id="reset-values">Standardwerte wiederherstellen</button>
+          <div id="drake-output">
+            <div id="drake-result-box">
+              <p><strong>Ergebnis:</strong></p>
+              <p id="drake-result-value"><span id="drake-result">?</span> mögliche Zivilisation(en)</p>
+            </div>
+
+            <canvas id="milkyway-canvas" width="800" height="600"></canvas>
+          </div>
+        </div>
+      </div>
+  </main>
+
+  <footer>
     Footer mit Quellen
   </footer>
-<script src="script.js"></script>
+
+  <script src="script.js"></script>
 </body>
+
 </html>
