@@ -1,3 +1,4 @@
+
 // --- Navigation: Buttons + Content-Elemente ---
 const buttons = document.querySelectorAll("nav button");
 const content = document.querySelector(".content");
@@ -34,16 +35,67 @@ buttons.forEach(button => {
   });
 });
 
+let canvas = null;
+let ctx = null; // globaler Canvas-Kontext
+let stars = [];
+
+function generateStars(count = 20000) {
+  stars = [];
+  for (let i = 0; i < count; i++) {
+    const angle = Math.random() * 2 * Math.PI;
+    const radius = Math.pow(Math.random(), 0.7) * 300;
+    const x = canvas.width / 2 + radius * Math.cos(angle + radius * 0.05);
+    const y = canvas.height / 2 + radius * Math.sin(angle + radius * 0.05);
+    stars.push({ x, y, highlighted: false });
+  }
+}
+
+function drawStars() {
+  if (!ctx || !window.backgroundImage?.complete) {
+    console.warn("Canvas-Kontext oder Hintergrundbild fehlt");
+    return;
+  }
+
+  ctx.clearRect(0, 0, 800, 600);
+  ctx.drawImage(window.backgroundImage, 0, 0, 800, 600);
+
+  stars.forEach(star => {
+    ctx.beginPath();
+    ctx.arc(star.x, star.y, star.highlighted ? 2.5 : 1.5, 0, 2 * Math.PI);
+    ctx.fillStyle = star.highlighted ? "lime" : "rgba(255, 255, 255, 0.4)";
+    ctx.fill();
+  });
+}
+
+function highlightCivilizations(count) {
+  stars.forEach((s, index) => {
+    s.highlighted = index < count;
+  });
+  drawStars();
+}
+
+// Integration mit Drake-Berechnung
+function updateResult() {
+  const form = document.getElementById("drake-form");
+  const R = parseFloat(form.querySelector("input[name='R']")?.value || defaultValues.R);
+  const fp = parseFloat(form.querySelector("input[name='fp']")?.value || defaultValues.fp);
+  const ne = parseFloat(form.querySelector("input[name='ne']")?.value || defaultValues.ne);
+  const fl = parseFloat(form.querySelector("input[name='fl']")?.value || defaultValues.fl);
+  const fi = parseFloat(form.querySelector("input[name='fi']")?.value || defaultValues.fi);
+  const fc = parseFloat(form.querySelector("input[name='fc']")?.value || defaultValues.fc);
+  const L = parseFloat(form.querySelector("input[name='L']")?.value || defaultValues.L);
+
+  const N = R * fp * ne * fl * fi * fc * L;
+  document.getElementById("drake-result").textContent = N.toFixed(2);
+  highlightCivilizations(Math.round(N));
+}
+
 // Seite laden: letzte Seite anzeigen (oder "Diagramm")
 window.addEventListener("DOMContentLoaded", () => {
   const lastPage = localStorage.getItem("lastPage") || "Diagramm";
   const targetButton = Array.from(buttons).find(btn => btn.textContent.trim() === lastPage);
   if (targetButton) targetButton.click();
 });
-
-// -----------------------------------------------
-// ---- DR A K E - G L E I C H U N G   B E R E C H N U N G ----
-// -----------------------------------------------
 
 const defaultValues = {
   R: 1.5,
@@ -68,12 +120,31 @@ function renderDiagramSection() {
       <canvas id="milkyway-canvas" width="800" height="600"></canvas>
     </div>
   `;
+
+  // ⚠️ Jetzt das Canvas-Element holen (nachdem es erzeugt wurde!)
+  canvas = document.getElementById("milkyway-canvas");
+  ctx = canvas.getContext("2d");
+
+  if (!window.backgroundImage) {
+    window.backgroundImage = new Image();
+    window.backgroundImage.src = "milkyway.jpg";
+    window.backgroundImage.onload = () => {
+      generateStars();  // Jetzt funktioniert's!
+      drawStars();
+    };
+  } else {
+    generateStars();
+    drawStars();
+  }
+
   initForm();
+
   document.getElementById("reset-values").addEventListener("click", () => {
     initForm();
     document.querySelectorAll('#drake-form input[type="range"]').forEach(updateSliderBackground);
   });
 }
+
 
 function createInput(name, label, min, max, step, defaultValue) {
   const wrapper = document.createElement("div");
@@ -117,20 +188,6 @@ function createInput(name, label, min, max, step, defaultValue) {
 
   document.getElementById("drake-form").appendChild(wrapper);
   updateSliderBackground(slider);
-}
-
-function updateResult() {
-  const form = document.getElementById("drake-form");
-  const R = parseFloat(form.querySelector("input[name='R']")?.value || defaultValues.R);
-  const fp = parseFloat(form.querySelector("input[name='fp']")?.value || defaultValues.fp);
-  const ne = parseFloat(form.querySelector("input[name='ne']")?.value || defaultValues.ne);
-  const fl = parseFloat(form.querySelector("input[name='fl']")?.value || defaultValues.fl);
-  const fi = parseFloat(form.querySelector("input[name='fi']")?.value || defaultValues.fi);
-  const fc = parseFloat(form.querySelector("input[name='fc']")?.value || defaultValues.fc);
-  const L = parseFloat(form.querySelector("input[name='L']")?.value || defaultValues.L);
-
-  const N = R * fp * ne * fl * fi * fc * L;
-  document.getElementById("drake-result").textContent = N.toFixed(2);
 }
 
 function initForm() {
