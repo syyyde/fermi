@@ -1,8 +1,7 @@
-// Bestehende DOM-Elemente
+// --- Navigation: Buttons + Content-Elemente ---
 const buttons = document.querySelectorAll("nav button");
 const content = document.querySelector(".content");
 
-// Navigation zu statischen Seiten
 const staticPages = {
   "Was ist das Fermi Paradox?": "was_ist_fermi.html",
   "Anforderungen für Leben": "anforderungen.html",
@@ -12,13 +11,17 @@ const staticPages = {
   "Drake-Gleichung": "drake.html"
 };
 
+// Event-Listener für Buttons
 buttons.forEach(button => {
   button.addEventListener("click", () => {
-    localStorage.setItem("lastPage", label);
+    // aktive Klasse setzen
     buttons.forEach(btn => btn.classList.remove("active"));
     button.classList.add("active");
 
     const label = button.textContent.trim();
+
+    // letzte Seite merken
+    localStorage.setItem("lastPage", label);
 
     if (label === "Diagramm") {
       renderDiagramSection();
@@ -31,14 +34,17 @@ buttons.forEach(button => {
   });
 });
 
-// Beim Laden direkt Diagramm anzeigen
+// Seite laden: letzte Seite anzeigen (oder "Diagramm")
 window.addEventListener("DOMContentLoaded", () => {
   const lastPage = localStorage.getItem("lastPage") || "Diagramm";
   const targetButton = Array.from(buttons).find(btn => btn.textContent.trim() === lastPage);
   if (targetButton) targetButton.click();
 });
 
-// ---- Drake-Rechner ----
+// -----------------------------------------------
+// ---- DR A K E - G L E I C H U N G   B E R E C H N U N G ----
+// -----------------------------------------------
+
 const defaultValues = {
   R: 1.5,
   fp: 0.7,
