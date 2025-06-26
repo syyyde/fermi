@@ -4,7 +4,7 @@ const content = document.querySelector(".content");
 
 // Navigation zu statischen Seiten
 const staticPages = {
-  "Was ist das Fermi Paradox?": "wasist.html",
+  "Was ist das Fermi Paradox?": "was_ist_fermi.html",
   "Anforderungen für Leben": "anforderungen.html",
   "Entfernungen / Kommunikation": "entfernungen.html",
   "Zeiträume – Erklärung und Darstellung": "zeitraeume.html",
