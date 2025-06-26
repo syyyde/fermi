@@ -121,7 +121,7 @@ function renderDiagramSection() {
     </div>
   `;
 
-  // ⚠️ Jetzt das Canvas-Element holen (nachdem es erzeugt wurde!)
+  // Canvas-Element holen (nachdem es erzeugt wurde!)
   canvas = document.getElementById("milkyway-canvas");
   ctx = canvas.getContext("2d");
 
