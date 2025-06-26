@@ -14,6 +14,7 @@ const staticPages = {
 
 buttons.forEach(button => {
   button.addEventListener("click", () => {
+    localStorage.setItem("lastPage", label);
     buttons.forEach(btn => btn.classList.remove("active"));
     button.classList.add("active");
 
@@ -32,8 +33,9 @@ buttons.forEach(button => {
 
 // Beim Laden direkt Diagramm anzeigen
 window.addEventListener("DOMContentLoaded", () => {
-  const defaultButton = Array.from(buttons).find(btn => btn.textContent.trim() === "Diagramm");
-  if (defaultButton) defaultButton.click();
+  const lastPage = localStorage.getItem("lastPage") || "Diagramm";
+  const targetButton = Array.from(buttons).find(btn => btn.textContent.trim() === lastPage);
+  if (targetButton) targetButton.click();
 });
 
 // ---- Drake-Rechner ----
