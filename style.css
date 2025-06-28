@@ -16,6 +16,7 @@ header,
 nav,
 h1, h2, h3,
 button,
+.formula-box,
 #drake-result-box {
   font-family: 'Orbitron', sans-serif;
 }
