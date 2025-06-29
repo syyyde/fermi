@@ -67,7 +67,7 @@ function drawStars() {
   stars.forEach(star => {
     ctx.beginPath();
     ctx.arc(star.x, star.y, star.highlighted ? 2.5 : 1.5, 0, 2 * Math.PI); // größere Sterne, wenn hervorgehoben
-    ctx.fillStyle = star.highlighted ? "pink" : "rgba(255, 255, 255, 0.4)";
+    ctx.fillStyle = star.highlighted ? "hotpink" : "rgba(255, 255, 255, 0.4)";
     ctx.fill();
   });
 }
