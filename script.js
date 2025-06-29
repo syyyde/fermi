@@ -67,16 +67,32 @@ function drawStars() {
     return;
   }
 
+  // Hintergrund zeichnen
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.drawImage(window.backgroundImage, 0, 0, canvas.width, canvas.height); // Hintergrundbild zeichnen
+  ctx.drawImage(window.backgroundImage, 0, 0, canvas.width, canvas.height);
 
+  // Sterne zeichnen
   stars.forEach(star => {
     ctx.beginPath();
-    ctx.arc(star.x, star.y, star.highlighted ? 2.5 : 1.5, 0, 2 * Math.PI); // größere Sterne, wenn hervorgehoben
+    ctx.arc(star.x, star.y, star.highlighted ? 2.5 : 1.5, 0, 2 * Math.PI);
     ctx.fillStyle = star.highlighted ? "lime" : "rgba(255, 255, 255, 0.4)";
     ctx.fill();
   });
+
+  // --- Sonnenmarkierung ---
+  const sunX = canvas.width * 0.50  // weiter links
+  const sunY = canvas.height * 0.69; // etwas tiefer
+
+  ctx.beginPath();
+  ctx.arc(sunX, sunY, 5, 0, 2 * Math.PI);
+  ctx.fillStyle = "yellow";
+  ctx.shadowColor = "white";
+  ctx.shadowBlur = 10;
+  ctx.fill();
+  ctx.shadowBlur = 0; // Schatten zurücksetzen
 }
+
+
 
 // Hebt die ersten `count` Sterne hervor
 function highlightCivilizations(count) {
@@ -163,6 +179,7 @@ function renderDiagramSection() {
 
     <!-- Legende -->
     <div id="legend">
+      <div><span class="legend-dot" style="background-color: yellow;"></span> Unsere Sonne</div>
       <div><span class="legend-dot" style="background-color: lime;"></span> Sterne mit Zivilisation(en)</div>
       <div><span class="legend-dot" style="background-color: rgba(255,255,255,0.4);"></span> Übrige Sterne</div>
     </div>
