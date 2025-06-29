@@ -217,12 +217,12 @@ function initForm() {
 
   // Alle Parameter einzeln hinzufügen
   createInput("R", "R* (Sternentstehungsrate)", 0.1, 10, 0.1, defaultValues.R);
-  createInput("fp", "fₚ (Anteil mit Planetensystemen)", 0.1, 1, 0.01, defaultValues.fp);
+  createInput("fp", "fₚ (Anteil mit Planetensystemen)", 0.01, 1, 0.01, defaultValues.fp);
   createInput("ne", "nₑ (bewohnbare Planeten)", 0.1, 5, 0.1, defaultValues.ne);
   createInput("fl", "fₗ (mit Leben)", 0.1, 1, 0.01, defaultValues.fl);
   createInput("fi", "fᵢ (intelligentes Leben)", 0.1, 1, 0.01, defaultValues.fi);
   createInput("fc", "f𝚌 (kommunizierende Zivilisationen)", 0.1, 1, 0.01, defaultValues.fc);
-  createInput("L", "L (Dauer in Jahren)", 1, 10000, 1, defaultValues.L);
+  createInput("L", "L (Dauer in Jahren)", 1, 100000, 1, defaultValues.L);
 
   updateResult(); // Direkt Ergebnis berechnen
 }
