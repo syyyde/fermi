@@ -45,12 +45,18 @@ let stars = []; // Array für Sterne
 // Funktion zur Erzeugung zufälliger Sterne im Spiralgalaxie-Stil
 function generateStars(count = 20000) {
   stars = [];
+  const minRadius = 80; // Mitte aussparen (abhängig von Canvas-Größe)
+  const maxRadius = canvas.width / 2.8; // äußeren Rand etwas verkleinern
+
   for (let i = 0; i < count; i++) {
     const angle = Math.random() * 2 * Math.PI;
-    const radius = Math.pow(Math.random(), 0.7) * (canvas.width / 2.5); // exponentielle Verteilung für realistischere Verteilung
-    const x = canvas.width / 2 + radius * Math.cos(angle + radius * 0.05); // leichte Spiralform
-    const y = canvas.height / 2 + radius * Math.sin(angle + radius * 0.05);
-    stars.push({ x, y, highlighted: false }); // Sterne sind standardmäßig nicht hervorgehoben
+    const radius = Math.pow(Math.random(), 0.7) * (maxRadius - minRadius) + minRadius;
+    const spiralOffset = radius * 0.05;
+
+    const x = canvas.width / 2 + radius * Math.cos(angle + spiralOffset);
+    const y = canvas.height / 2 + radius * Math.sin(angle + spiralOffset);
+
+    stars.push({ x, y, highlighted: false });
   }
 }
 
@@ -134,17 +140,34 @@ const defaultValues = {
 function renderDiagramSection() {
   // HTML-Struktur für Formular und Canvas einfügen
   content.innerHTML = `
-    <h2>Interaktiver Drake-Rechner</h2>
-    <div id="drake-form"></div>
-    <button id="reset-values">Standardwerte wiederherstellen</button>
-    <div id="drake-output">
-      <div id="drake-result-box">
-        <p><strong>Ergebnis:</strong></p>
-        <p id="drake-result-value"><span id="drake-result">?</span> mögliche Zivilisation(en)</p>
-      </div>
-      <canvas id="milkyway-canvas" width="1200" height="1200"></canvas>
+  <h2>Interaktiver Drake-Rechner</h2>
+  <div id="drake-form"></div>
+  <button id="reset-values">Standardwerte wiederherstellen</button>
+  <div id="drake-output">
+    <div id="drake-result-box">
+      <p><strong>Ergebnis:</strong></p>
+      <p id="drake-result-value"><span id="drake-result">?</span> mögliche Zivilisation(en)</p>
     </div>
-  `;
+
+    <canvas id="milkyway-canvas" width="1200" height="1200"></canvas>
+
+    <!-- Maßstab -->
+    <div id="scale-bar">
+      <div class="scale-line"></div>
+      <div class="scale-labels">
+        <span>0</span>
+        <span>50.000 Lj</span>
+        <span>100.000 Lj</span>
+      </div>
+    </div>
+
+    <!-- Legende -->
+    <div id="legend">
+      <div><span class="legend-dot" style="background-color: lime;"></span> Sterne mit Zivilisation(en)</div>
+      <div><span class="legend-dot" style="background-color: rgba(255,255,255,0.4);"></span> Übrige Sterne</div>
+    </div>
+  </div>
+`;
 
   // Canvas initialisieren
   canvas = document.getElementById("milkyway-canvas");
