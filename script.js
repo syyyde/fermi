@@ -237,3 +237,23 @@ function updateSliderBackground(slider) {
   // CSS-Farbverlauf: links gefüllt mit Farbe, rechts weiß
   slider.style.background = `linear-gradient(to right, var(--eggplant) 0%, var(--eggplant) ${percentage}%, white ${percentage}%, white 100%)`;
 }
+
+// --- Footer-Link: Quellen & Literatur ---
+document.querySelector("footer a[href='quellen.html']").addEventListener("click", (e) => {
+  e.preventDefault(); // verhindert Seitenwechsel
+
+  // Footer-Link optional optisch hervorheben
+  buttons.forEach(btn => btn.classList.remove("active"));
+
+  // Seite laden wie bei den statischen Buttons
+  fetch("quellen.html")
+    .then(res => res.text())
+    .then(html => {
+      content.innerHTML = html;
+      localStorage.setItem("lastPage", "Quellen & Literatur");
+    })
+    .catch(err => {
+      content.innerHTML = `<p>Fehler beim Laden: ${err}</p>`;
+    });
+});
+
