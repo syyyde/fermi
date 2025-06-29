@@ -14,7 +14,9 @@
 
 header,
 nav,
-h1, h2, h3,
+h1,
+h2,
+h3,
 button,
 .formula-box,
 #drake-result-box {
@@ -50,26 +52,30 @@ header {
     0 4px 6px rgba(0, 0, 0, 0.3),
     inset 0 -2px 2px rgba(255, 255, 255, 0.2);
   padding: 0 1rem;
-  overflow: hidden; 
+  overflow: hidden;
 }
 
 .header-content {
   display: flex;
   align-items: center;
   gap: -1rem;
-  white-space: nowrap; /* verhinder Zeilenumbruch im Titel */
+  white-space: nowrap;
+  /* verhinder Zeilenumbruch im Titel */
 }
 
 .header-title {
   font-size: 1.5rem;
   font-weight: bold;
   letter-spacing: 1px;
-  padding: 0 0rem;      /* Abstand zwischen Logo und Titel */
+  padding: 0 0rem;
+  /* Abstand zwischen Logo und Titel */
 }
 
 .header-logo {
-  height: 95%;       /* kleiner als 100% für bessere Proportionen */
-  max-height: 120px;  /* absolute Obergrenze*/
+  height: 95%;
+  /* kleiner als 100% für bessere Proportionen */
+  max-height: 120px;
+  /* absolute Obergrenze*/
   width: auto;
   padding: 0;
   margin: 0;

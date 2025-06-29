@@ -5,7 +5,7 @@ const content = document.querySelector(".content"); // Das Hauptelement, in das 
 // Mapping der statischen Seiten anhand der Button-Beschriftung
 const staticPages = {
   "Was ist das Fermi-Paradox?": "was_ist_fermi.html",
-  "Anforderungen für Leben": "anforderungen.html",
+  "Bedingungen für Leben": "anforderungen.html",
   "Entfernungen": "entfernungen.html",
   "Zeiträume": "zeitraeume.html",
   "Kardaschow-Skala": "kardashev.html",
