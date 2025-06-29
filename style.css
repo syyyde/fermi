@@ -277,6 +277,8 @@ input[type="range"]::-moz-range-thumb:hover {
   border: 2px solid var(--van-dyke);
   border-radius: 12px;
   margin-top: 2rem;
+  width: 100%;
+  height: auto;
 }
 
 /*

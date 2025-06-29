@@ -47,7 +47,7 @@ function generateStars(count = 20000) {
   stars = [];
   for (let i = 0; i < count; i++) {
     const angle = Math.random() * 2 * Math.PI;
-    const radius = Math.pow(Math.random(), 0.7) * 300; // exponentielle Verteilung für realistischere Verteilung
+    const radius = Math.pow(Math.random(), 0.7) * (canvas.width / 2.5); // exponentielle Verteilung für realistischere Verteilung
     const x = canvas.width / 2 + radius * Math.cos(angle + radius * 0.05); // leichte Spiralform
     const y = canvas.height / 2 + radius * Math.sin(angle + radius * 0.05);
     stars.push({ x, y, highlighted: false }); // Sterne sind standardmäßig nicht hervorgehoben
@@ -61,8 +61,8 @@ function drawStars() {
     return;
   }
 
-  ctx.clearRect(0, 0, 800, 600); // Canvas löschen
-  ctx.drawImage(window.backgroundImage, 0, 0, 800, 600); // Hintergrundbild zeichnen
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.drawImage(window.backgroundImage, 0, 0, canvas.width, canvas.height); // Hintergrundbild zeichnen
 
   stars.forEach(star => {
     ctx.beginPath();
@@ -133,7 +133,7 @@ function renderDiagramSection() {
         <p><strong>Ergebnis:</strong></p>
         <p id="drake-result-value"><span id="drake-result">?</span> mögliche Zivilisation(en)</p>
       </div>
-      <canvas id="milkyway-canvas" width="800" height="600"></canvas>
+      <canvas id="milkyway-canvas" width="1200" height="700"></canvas>
     </div>
   `;
 
