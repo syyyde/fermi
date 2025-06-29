@@ -106,6 +106,15 @@ function updateResult() {
 // Beim Laden der Seite: letzte Seite wiederherstellen oder Standard ("Diagramm")
 window.addEventListener("DOMContentLoaded", () => {
   const lastPage = localStorage.getItem("lastPage") || "Diagramm";
+
+  if (lastPage === "Quellen & Literatur") {
+    fetch("quellen.html")
+      .then(res => res.text())
+      .then(html => content.innerHTML = html)
+      .catch(err => content.innerHTML = `<p>Fehler beim Laden: ${err}</p>`);
+    return;
+  }
+
   const targetButton = Array.from(buttons).find(btn => btn.textContent.trim() === lastPage);
   if (targetButton) targetButton.click(); // Button programmatisch klicken
 });
