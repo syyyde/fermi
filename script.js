@@ -133,7 +133,7 @@ function renderDiagramSection() {
         <p><strong>Ergebnis:</strong></p>
         <p id="drake-result-value"><span id="drake-result">?</span> mögliche Zivilisation(en)</p>
       </div>
-      <canvas id="milkyway-canvas" width="1200" height="700"></canvas>
+      <canvas id="milkyway-canvas" width="1200" height="1200"></canvas>
     </div>
   `;
 
