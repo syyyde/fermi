@@ -39,7 +39,7 @@ buttons.forEach(button => {
 
 // --- Globale Variablen für Canvas und Sterne ---
 let canvas = null;
-let ctx = null; // Kontext zum Zeichnen auf dem Canvas
+let ctx = null; // Kontext zum Zeichnen auf dem Canvas, muss vorher initialisiert werden
 let stars = []; // Array für Sterne
 
 // Funktion zur Erzeugung zufälliger Sterne im Spiralgalaxie-Stil
