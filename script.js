@@ -24,7 +24,7 @@ buttons.forEach(button => {
     // Gewählte Seite im lokalen Speicher merken
     localStorage.setItem("lastPage", label);
 
-    if (label === "Diagramm") {
+    if (label === "Interaktiver Drake-Rechner") {
       // Spezialfall: interaktive Diagrammseite rendern
       renderDiagramSection();
     } else if (staticPages[label]) {
@@ -127,7 +127,7 @@ function updateResult() {
 
 // Beim Laden der Seite: letzte Seite wiederherstellen oder Standard ("Diagramm")
 window.addEventListener("DOMContentLoaded", () => {
-  const lastPage = localStorage.getItem("lastPage") || "Diagramm";
+  const lastPage = localStorage.getItem("lastPage") || "Interaktiver Drake-Rechner";
 
   if (lastPage === "Quellen & Literatur") {
     fetch("quellen.html")
